@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calc</title>
+    <script>
+        "use strict"
+        let number1 = '';
+        let number2 = '';
+        let symbol = '';
+        let final = '';
+
+        const clean = () => {
+            let number1 = '';
+            let number2 = '';
+            let symbol = '';
+            let final = '';
+            document.getElementsByClassName('result')[0].innerHTML = '0';
+        }
+
+        const number = (event) => {
+            number2 += event.target.value;
+            document.getElementsByClassName('result')[0].innerHTML = number2;
+
+        }
+        const symbols = (event) => {
+            number1 = number2;
+            number2 = '';
+            symbol = event.target.value;
+            document.getElementsByClassName('result')[0].innerHTML = symbol;
+
+        }
+
+        const equal = () => {
+            switch (symbol) {
+                case '+':
+                    final = parseInt(number1) + parseInt(number2);
+                    break;
+                case '-':
+                    final = parseInt(number1) - parseInt(number2);
+                    break;
+                case '*':
+                    final = parseInt(number1) * parseInt(number2);
+                    break;
+                case '/':
+                    final = parseInt(number1) / parseInt(number2);
+                    break;
+                case '%':
+                    final = parseInt(number1) % parseInt(number2);
+                    break;
+                case 'round':
+                    final = Math.round(parseInt(number1));
+                    break;
+                default:
+                    break;
+            }
+            document.getElementsByClassName('result')[0].innerHTML = final;
+        }
+
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 0 1 60%;
+            width: 400px;
+        }
+
+        .buttons,
+        .result {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 0 1 100%;
+            justify-content: center;
+        }
+
+        .result {
+            height: 50px;
+            border: 1px solid black;
+            background-color: gray;
+            font-size: 2rem;
+            color: blue;
+        }
+
+        .button {
+            display: flex;
+            flex: 0 1 25%;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border: 1px solid black;
+            cursor: pointer;
+            background-color: darkgrey;
+            font-size: 2rem;
+        }
+
+        .zero-btn {
+            flex-grow: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="result">0</div>
+        <div class="buttons">
+            <button class="button" value="Ac" onclick="clean()">AC</button>
+            <button class="button" value="round" onclick="symbols(event)">round</button>
+            <button class="button" value="%" onclick="symbols(event)">%</button>
+            <button class="button" value="/" onclick="symbols(event)">/</button>
+            <button class="button" value="7" onclick="number(event)">7</button>
+            <button class="button" value="8" onclick="number(event)">8</button>
+            <button class="button" value="9" onclick="number(event)">9</button>
+            <button class="button" value="*" onclick="symbols(event)">*</button>
+            <button class="button" value="4" onclick="number(event)">4</button>
+            <button class="button" value="5" onclick="number(event)">5</button>
+            <button class="button" value="6" onclick="number(event)">6</button>
+            <button class="button" value="-" onclick="symbols(event)">-</button>
+            <button class="button" value="1" onclick="number(event)">1</button>
+            <button class="button" value="2" onclick="number(event)">2</button>
+            <button class="button" value="3" onclick="number(event)">3</button>
+            <button class="button" value="+" onclick="symbols(event)">+</button>
+            <button class="button zero-btn" value="0" onclick="number(event)">0</button>
+            <button class="button" value="." onclick="number(event)">.</button>
+            <button class="button" value="=" onclick="equal()">=</button>
+        </div>
+    </div>
+</body>
+
+</html>
